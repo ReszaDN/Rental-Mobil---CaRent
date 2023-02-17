@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Mobil;
 
-class PeminjamanController extends Controller
+
+class welcomeController extends Controller
 {
-    public function __construct(){
-        $this->middleware('AdminMiddle');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +15,10 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.pengambilan');
+        //
+        return view('index', [
+            'cars' => Mobil::all()
+        ]);
     }
 
     /**

@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\admin\LoginAdminController;
 use App\Http\Controllers\Auth\admin\DashboardController;
-use App\Http\Controllers\Auth\admin\PeminjamanController;
-use App\Http\Controllers\Auth\admin\PengembalianController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
+
+
 
 
 /*
@@ -18,14 +20,13 @@ use App\Http\Controllers\Auth\admin\PengembalianController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 
 //KONSUMEN
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 //ADMIN
@@ -33,9 +34,11 @@ Route::get('/admin-login', [LoginAdminController::class, 'index']);
 Route::post('/admin-login', [LoginAdminController::class, 'prosesLogin']);
 Route::get('/logout', [LoginAdminController::class, 'logout']);
 Route::get('/admin-home', [DashboardController::class, 'index']);
-Route::get('/admin-pengambilan', [PeminjamanController::class, 'index']);
-Route::get('/admin-pengembalian', [PengembalianController::class, 'index']);
+Route::get('/admin-pengambilan', [DashboardController::class, 'Pengambilan']);
+Route::get('/admin-pengembalian', [DashboardController::class, 'Pengembalian']);
 Route::get('/admin-list-mobil', [DashboardController::class, 'listMobil']);
+Route::get('/admin-tambah-mobil', [DashboardController::class, 'formTambah']);
+Route::post('/tambah-mobil', [DashboardController::class, 'ProsesTambah']);
 Route::get('/admin-list-konsumen', [DashboardController::class, 'listKonsumen']);
 Route::get('/admin-list-booking', [DashboardController::class, 'listBooking']);
 Route::get('/admin-cetak', [DashboardController::class, 'cetak']);

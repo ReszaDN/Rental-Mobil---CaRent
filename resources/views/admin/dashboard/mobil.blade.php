@@ -9,7 +9,7 @@
     </ol>
     <div class="card shadow mb-4">
             <div class="card-body">
-            <a href="#" type="button" class="btn btn-success mb-3">Tambah Mobil</a>
+            <a href="/admin-tambah-mobil" type="button" class="btn btn-success mb-3">Tambah Mobil</a>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="#" width="100%" cellspacing="0">
                         <thead>
@@ -21,12 +21,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($cars as $car)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td> {{ $loop->iteration }} </td>
+                                <td> {{ $car->jenis_mobil }} </td>
+                                <td> {{ $car->kapasitas }} </td>
+                                <td>
+                                <button type='button' class='btn btn-danger' data-toggle='modal'>Hapus</button>
+                                </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
