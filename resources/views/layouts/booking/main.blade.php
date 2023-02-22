@@ -23,7 +23,6 @@
   <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  
 
   <!-- Template Main CSS File -->
   <link href="/assets/css/style.css" rel="stylesheet">
@@ -39,8 +38,7 @@
 
 <body>
 
-  @include('layouts.navbar')
-  <main id="main">
+  <main>
 
     @yield('container')
 
@@ -61,12 +59,10 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
   <script src="js/my-login.js"></script>
-
 </body>
 
 </html>

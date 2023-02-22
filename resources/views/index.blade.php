@@ -18,13 +18,12 @@
                       <h5 class='card-title'> {{ $car->jenis_mobil }} </h5>
                       <p class='card-text'>Kapasitas untuk {{ $car->kapasitas }} Orang (Include Driver)</p>
                       <p class='card-text'>Rp.{{ $car->harga }} /Hari</p>
-                      <a href='/booking' class='btn btn-primary'>Booking</a>
+                      <a href='/booking/{{ $car->id }}' class='btn btn-primary'>Booking</a>
                     </div>
                   </div>
               </div>
             @endforeach
         </div>
-         
         </div>
       </div>
     </section>

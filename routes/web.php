@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\admin\LoginAdminController;
 use App\Http\Controllers\Auth\admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BookingController;
 
 
 
@@ -27,6 +28,8 @@ Route::get('/', [WelcomeController::class, 'index']);
 //KONSUMEN
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/booking/{id}', [BookingController::class, 'create']);
+Route::post('/booking-mobil/{id}', [BookingController::class, 'store']);
 
 
 //ADMIN
