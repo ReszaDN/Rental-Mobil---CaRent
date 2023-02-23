@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
+
+
 
 class Booking extends Model
 {
@@ -25,4 +28,10 @@ class Booking extends Model
     public function users(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public static function getId()
+    {
+        return $getId = DB::table('bookings')->orderBy('id','DESC')->take(1)->get();
+    }
+    
 }

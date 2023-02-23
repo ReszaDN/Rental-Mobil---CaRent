@@ -47,8 +47,6 @@ class DashboardController extends Controller
             $validateData['gambar'] =$request->file('gambar')->store('car-images');
         }
 
-        
-        // dd($validateData);
 
         Mobil::create($validateData);
 

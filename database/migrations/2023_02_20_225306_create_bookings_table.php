@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kode_booking');
             $table->date('tgl_pinjam');
             $table->integer('lama_pinjam');
-            $tabel->integer('total_harga');
+            $table->integer('total_harga');
             $table->string('keterangan');
             $table->foreignId('id_mobil');
             $table->foreignId('id_user');

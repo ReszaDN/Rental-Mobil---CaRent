@@ -44,10 +44,42 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //
+        $validatedData = $request->validate([
+            "tgl_pinjam" => 'required',
+            "lama_pinjam" => 'required', 
+        ]);
+
+        //Awal Buat Kode Booking
+
+        $idM = Booking::getId();
+        foreach ($idM as $value);
+        $idlm = $value->id;
+        $idbru = $idlm+1;
+        $tgl = date('dmy');
+
+        $no_booking = 'BK-' . $tgl . 'YN' . $idbru;
+
+        //Akhit Buat Kode Booking
+
+        //Buat Hitung Total Harga
+        $harga = Mobil::where('id', $id)->get()->value('harga');
+        $lama = $request['lama_pinjam'];
+        $total = $lama * $harga;
+        //Akhir Hitung Total Harga
         
+        $validatedData['kode_booking'] = $no_booking;
+        $validatedData['total_harga'] = $total;
+        $validatedData['keterangan'] = "Belum Lunas";
+        $validatedData['id_user'] = auth()->user()->id;
+        $validatedData['id_mobil'] = $id;
+
+        Booking::create($validatedData);
+
+        return redirect('https://wa.me/#');
+
     }
 
     /**

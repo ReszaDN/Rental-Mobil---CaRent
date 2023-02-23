@@ -27,24 +27,24 @@
                 <div class="col-lg-5 col-mt-7 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="card fat">
                         <div class="card-body">
-                            <form action="/booking-mobil" method="POST" class="my-login-validation" novalidate="">
-
+                            <form action="/booking-mobil/{{ $car->id }}" method="POST" class="my-login-validation" novalidate="">
+                                @csrf
                                 <div class="form-group">
-                                    <label for="tgl_sewa">Tanggal Sewa</label>
-                                    <input id="tgl_sewa" type="date" class="form-control" name="tgl_sewa" required>
+                                    <label for="tgl_pinjam">Tanggal Pinjam</label>
+                                    <input id="tgl_pinjam" type="date" class="form-control" name="tgl_pinjam" required>
                                     <div class="invalid-feedback">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="lama">Lama Sewa (/Hari)</label>
-                                    <input id="lama" type="text" class="form-control" name="lama" required>
+                                    <label for="lama_pinjam">Lama Pinjam (/Hari)</label>
+                                    <input id="lama_pinjam" type="text" class="form-control" name="lama_pinjam" required>
                                     <div class="invalid-feedback">
                                     </div>
                                 </div>
                     
                                 <div class="form-group m-0">
-                                    <button type="submit" class="btn btn-success btn-block" name="booking"> 
+                                    <button type="submit" class="btn btn-success btn-block"> 
                                         Booking
                                     </button>
                                 </div>
