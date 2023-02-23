@@ -13,7 +13,6 @@
                 <table class="table table-bordered" id="#" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
                             <th>Nama</th>
                             <th>Jenis Mobil</th>
                             <th>Tanggal Booking</th>
@@ -24,16 +23,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($bookings as $bk)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> {{ $bk->users->name }} </td>
+                            <td> {{ $bk->mobil->jenis_mobil }} </td>
+                            <td> {{ $bk->created_at }} </td>
+                            <td> {{ $bk->tgl_pinjam }} </td>
+                            <td> {{ $bk->lama_pinjam }} Hari</td>
+                            <td> {{ $bk->total_harga }} </td>
+                            <td> <a href="/lunas/{{ $bk->id }}" class="btn btn-success">Accept</a> </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

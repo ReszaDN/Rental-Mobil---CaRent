@@ -23,10 +23,10 @@ class Booking extends Model
     ];
 
     public function mobil(){
-        return $this->belongsTo(Mobil::class);
+        return $this->belongsTo(Mobil::class, 'id_mobil');
     }
     public function users(){
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id_user');
     }
 
     public static function getId()

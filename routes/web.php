@@ -44,4 +44,5 @@ Route::get('/admin-tambah-mobil', [DashboardController::class, 'formTambah']);
 Route::post('/tambah-mobil', [DashboardController::class, 'ProsesTambah']);
 Route::get('/admin-list-konsumen', [DashboardController::class, 'listKonsumen']);
 Route::get('/admin-list-booking', [DashboardController::class, 'listBooking']);
+Route::get('/lunas/{id}', [DashboardController::class, 'acceptBK']);
 Route::get('/admin-cetak', [DashboardController::class, 'cetak']);

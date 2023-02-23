@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Mobil;
+use App\Models\Booking;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -71,7 +73,18 @@ class DashboardController extends Controller
 
     public function listBooking()
     {
-        return view('admin.dashboard.booking');
+        return view('admin.dashboard.booking',[
+            "bookings" => Booking::all()->where('keterangan', "Belum Lunas")
+        ]);
+    }
+
+    public function acceptBK($id)
+    {
+        $validateData['keterangan'] = "Lunas";
+        
+        Booking::find($id)->update($validateData);
+        
+        return redirect('/admin-list-booking');
     }
     
     public function cetak()
