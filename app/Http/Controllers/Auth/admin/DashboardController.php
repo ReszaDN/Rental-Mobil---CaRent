@@ -71,6 +71,9 @@ class DashboardController extends Controller
         return view('admin.dashboard.konsumen');
     }
 
+
+    //Proses Booking
+
     public function listBooking()
     {
         return view('admin.dashboard.booking',[
@@ -78,14 +81,23 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function acceptBK($id)
+    public function info(Booking $id)
+    {
+        return view('admin.dashboard.pembayaran', [
+            "bk" => $id
+        ]);
+    }
+
+    public function acceptBK(Request $request, $id)
     {
         $validateData['keterangan'] = "Lunas";
         
-        Booking::find($id)->update($validateData);
+        Booking::where('id', $id)->update($validateData);
         
         return redirect('/admin-list-booking');
     }
+
+    // Akhir proses booking
     
     public function cetak()
     {

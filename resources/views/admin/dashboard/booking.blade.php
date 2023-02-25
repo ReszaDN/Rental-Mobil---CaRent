@@ -27,11 +27,11 @@
                         <tr>
                             <td> {{ $bk->users->name }} </td>
                             <td> {{ $bk->mobil->jenis_mobil }} </td>
-                            <td> {{ $bk->created_at }} </td>
+                            <td> {{ date('d-m-Y', strtotime($bk->created_at)) }} </td>
                             <td> {{ $bk->tgl_pinjam }} </td>
                             <td> {{ $bk->lama_pinjam }} Hari</td>
                             <td> {{ $bk->total_harga }} </td>
-                            <td> <a href="/lunas/{{ $bk->id }}" class="btn btn-success">Accept</a> </td>
+                            <td> <a href="/detail/{{ $bk->id }}/konfirmasi" class="btn btn-info">Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -18,6 +18,7 @@ class Booking extends Model
         'lama_pinjam',
         'total_harga',
         'keterangan',
+        'bukti_byr',
         'id_mobil',
         'id_user'
     ];
@@ -29,9 +30,22 @@ class Booking extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public static function getId()
+    public static function getKode()
     {
-        return $getId = DB::table('bookings')->orderBy('id','DESC')->take(1)->get();
+        $getId = DB::table('bookings')->select('id')->get();
+
+        $idM = $getId;
+
+        foreach ($idM as $value);
+        if( $idM->count() == 0){
+            $idlm = 0;
+        }else{
+        $idlm = $value->id;
+        }
+        $idbru = $idlm+1;
+        $tgl = date('dmy');
+
+        return $no_booking = 'BK-' . $tgl . 'YN' . $idbru;
     }
     
 }

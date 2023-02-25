@@ -53,33 +53,25 @@ class BookingController extends Controller
         ]);
 
         //Awal Buat Kode Booking
+        $idM = Booking::getKode();
+        //Akhir Buat Kode Booking
 
-        $idM = Booking::getId();
-        foreach ($idM as $value);
-        $idlm = $value->id;
-        $idbru = $idlm+1;
-        $tgl = date('dmy');
-
-        $no_booking = 'BK-' . $tgl . 'YN' . $idbru;
-
-        //Akhit Buat Kode Booking
-
-        //Buat Hitung Total Harga
+        // Buat Hitung Total Harga
         $harga = Mobil::where('id', $id)->get()->value('harga');
         $lama = $request['lama_pinjam'];
         $total = $lama * $harga;
         //Akhir Hitung Total Harga
         
-        $validatedData['kode_booking'] = $no_booking;
+        $validatedData['kode_booking'] = $idM;
         $validatedData['total_harga'] = $total;
         $validatedData['keterangan'] = "Belum Lunas";
+        $validatedData['bukti_byr'] = "bukti_bayar/no-image-icon-23485.png";
         $validatedData['id_user'] = auth()->user()->id;
         $validatedData['id_mobil'] = $id;
 
         Booking::create($validatedData);
 
-        return redirect('https://wa.me/#');
-
+        return redirect('/list-booking');
     }
 
     /**
@@ -88,9 +80,13 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showBK()
     {
             //
+            return view('bookingList', [
+                'bookings'=> Booking::latest()->where('id_user', auth()->user()->id)->get()
+            ]);
+
     }
 
 
@@ -100,9 +96,12 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function bayarBK(Booking $kode)
     {
         //
+        return view ('bayar', [
+            'bk' => $kode
+        ]);
     }
 
     /**
@@ -112,9 +111,18 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function prosesBayar(Request $request, $kode)
     {
         //
+
+
+        if($request->file('gambar')){
+            $validateData['bukti_byr'] = $request->file('gambar')->store('bukti_bayar');
+        }
+
+        Booking::where('kode_booking', $kode)->update($validateData);
+
+        return redirect('/list-booking')->with('success', 'Tunggu Konfirmasi dari admin');
     }
 
     /**
