@@ -41,7 +41,9 @@ Route::post('/admin-login', [LoginAdminController::class, 'prosesLogin']);
 Route::get('/logout', [LoginAdminController::class, 'logout']);
 Route::get('/admin-home', [DashboardController::class, 'index']);
 Route::get('/admin-pengambilan', [DashboardController::class, 'Pengambilan']);
+Route::post('/admin-pengambilan/{id}', [DashboardController::class, 'prosesPengambilan']);
 Route::get('/admin-pengembalian', [DashboardController::class, 'Pengembalian']);
+Route::post('/pengembalian/{id}', [DashboardController::class, 'prosesPengembalian']);
 Route::get('/admin-list-mobil', [DashboardController::class, 'listMobil']);
 Route::get('/admin-tambah-mobil', [DashboardController::class, 'formTambah']);
 Route::post('/tambah-mobil', [DashboardController::class, 'ProsesTambah']);
@@ -49,4 +51,4 @@ Route::get('/admin-list-konsumen', [DashboardController::class, 'listKonsumen'])
 Route::get('/admin-list-booking', [DashboardController::class, 'listBooking']);
 Route::get('/detail/{id}/konfirmasi', [DashboardController::class, 'info']);
 Route::post('/detail/{id}', [DashboardController::class, 'acceptBK']);
-Route::get('/admin-cetak', [DashboardController::class, 'cetak']);
+Route::get('/cetak/{id}', [DashboardController::class, 'cetak']);

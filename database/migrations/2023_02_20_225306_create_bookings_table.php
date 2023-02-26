@@ -20,7 +20,9 @@ return new class extends Migration
             $table->integer('lama_pinjam');
             $table->integer('total_harga');
             $table->string('keterangan');
-            $table->string('bukti_byr')->nullable();;
+            $table->string('bukti_byr')->nullable();
+            $table->string('status')->nullable();
+            $table->string('status_mobil')->nullable();
             $table->foreignId('id_mobil');
             $table->foreignId('id_user');
             $table->timestamps();

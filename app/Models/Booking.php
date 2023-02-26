@@ -19,6 +19,8 @@ class Booking extends Model
         'total_harga',
         'keterangan',
         'bukti_byr',
+        'status',
+        'status_mobil',
         'id_mobil',
         'id_user'
     ];
@@ -28,6 +30,10 @@ class Booking extends Model
     }
     public function users(){
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function struk(){
+        return $this->hasOne(Struk::class);
     }
 
     public static function getKode()
@@ -46,6 +52,6 @@ class Booking extends Model
         $tgl = date('dmy');
 
         return $no_booking = 'BK-' . $tgl . 'YN' . $idbru;
-    }
-    
+    }    
+
 }

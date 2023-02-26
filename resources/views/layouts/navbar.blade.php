@@ -14,7 +14,6 @@
             <li class="drop-down"><a href="">Bukti</a>
               <ul>
                 <li><a href="/list-booking">Bukti Booking</a></li>
-                <li><a href="/list-pinjam">Bukti Peminjaman</a></li>
               </ul>
             </li>
             <li><a href="#about">About Us</a></li>

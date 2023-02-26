@@ -22,21 +22,16 @@
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tabel
+                        List
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseTable" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link {{ Request::is('mobil') ? 'active' : ''}}" href="/admin-list-mobil">Tabel Mobil</a>
-                            <a class="nav-link {{ Request::is('konsumen') ? 'active' : ''}}" href="/admin-list-konsumen">Tabel Konsumen</a>
-                            <a class="nav-link {{ Request::is('booking') ? 'active' : ''}}" href="/admin-list-booking">Tabel Booking</a>
+                            <a class="nav-link {{ Request::is('mobil') ? 'active' : ''}}" href="/admin-list-mobil">List Mobil</a>
+                            <a class="nav-link {{ Request::is('konsumen') ? 'active' : ''}}" href="/admin-list-konsumen">List Konsumen</a>
+                            <a class="nav-link {{ Request::is('booking') ? 'active' : ''}}" href="/admin-list-booking">List Antrian Booking</a>
                         </nav>
                     </div>
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="/admin-cetak">
-                        <div class="sb-nav-link-icon {{ Request::is('cetak') ? 'active' : ''}}"><i class="fas fa-chart-area"></i></div>
-                        Cetak
-                    </a>
                 </div>
             </div>
         </nav>
