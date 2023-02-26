@@ -114,8 +114,6 @@ class BookingController extends Controller
     public function prosesBayar(Request $request, $kode)
     {
         //
-
-
         if($request->file('gambar')){
             $validateData['bukti_byr'] = $request->file('gambar')->store('bukti_bayar');
         }
@@ -134,5 +132,12 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buktiBK(Request $request, $id)
+    {
+        return view('bukti',[
+            "bk" => Booking::where('id', $id)->first()
+        ]);
     }
 }

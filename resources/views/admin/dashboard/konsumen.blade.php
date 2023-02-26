@@ -13,19 +13,24 @@
                 <table class="table table-bordered" id="#" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>No</th>
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($users as $user)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td> {{ $user->name }} </td>
+                            <td> {{ $user->username }} </td>
+                            <td>
+                                <form action="/delete-konsumen/{{ $user->id }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

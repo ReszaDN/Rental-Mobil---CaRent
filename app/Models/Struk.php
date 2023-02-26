@@ -18,7 +18,7 @@ class Struk extends Model
         'id_booking',
     ];
 
-    public function booking(){
+    public function bookings(){
         return $this->belongsTo(Booking::class, 'id_booking');
     }
 

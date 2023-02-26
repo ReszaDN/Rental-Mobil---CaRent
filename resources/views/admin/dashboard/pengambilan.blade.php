@@ -43,6 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{ error_reporting(0) }}
                         @foreach($bookings as $bk)
                         <tr>
                             <td> {{ $bk->kode_booking }} </td>

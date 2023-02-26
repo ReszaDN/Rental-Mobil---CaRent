@@ -32,7 +32,7 @@ class Booking extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function struk(){
+    public function struks(){
         return $this->hasOne(Struk::class);
     }
 

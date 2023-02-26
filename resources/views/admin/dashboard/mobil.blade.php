@@ -27,7 +27,10 @@
                                 <td> {{ $car->jenis_mobil }} </td>
                                 <td> {{ $car->kapasitas }} </td>
                                 <td>
-                                <button type='button' class='btn btn-danger' data-toggle='modal'>Hapus</button>
+                                    <form action="/delete-mobil/{{ $car->id }}" method="post">
+                                        @csrf
+                                        <button type='submit' class='btn btn-danger' data-toggle='modal'>Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

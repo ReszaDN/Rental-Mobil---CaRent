@@ -34,7 +34,12 @@
                                 <td> {{ $bk->lama_pinjam }} </td>
                                 <td> {{ $bk->total_harga }} </td>
                                 @if( $bk->keterangan == 'Lunas' )
-                                <td> <a href="#" class="btn btn-success">Lihat Bukti Booking</a> </td>
+                                <td> 
+                                    <form action="/bukti-booking/{{ $bk->id }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success"> Lihat Bukti Booking</button>
+                                    </form> 
+                                </td>
                                 @else
                                 <td> <a href="/bayar/{{ $bk->kode_booking }}/konfirmasi" class="btn btn-warning">Lakukan Pembayaran</a> </td>
                                 @endif

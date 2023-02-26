@@ -19,16 +19,20 @@ class DashboardController extends Controller
    
     public function index()
     {
-        return view('admin.dashboard.home');
+        return view('admin.dashboard.home',[
+            'user' => User::count(),
+            'booking' => Booking::where('keterangan', 'Belum Lunas')->count(),
+            'mobil' => Mobil::count(),
+            'keluar' => Booking::where('status_mobil', 'Keluar')->count()
+        ]);
     }
 
+    //Awal Kelola Mobil
     public function listMobil()
     {
         return view('admin.dashboard.mobil', [
             'cars' => Mobil::all()
         ]);
-
-
     }
 
     public function formTambah()
@@ -38,7 +42,6 @@ class DashboardController extends Controller
 
     public function ProsesTambah(Request $request)
     {   
-
         $validateData = $request->validate([
             'jenis_mobil' => 'required',
             'kapasitas' => 'required',
@@ -50,13 +53,21 @@ class DashboardController extends Controller
             $validateData['gambar'] =$request->file('gambar')->store('car-images');
         }
 
-
         Mobil::create($validateData);
 
         return redirect('/admin-list-mobil');
     }
 
-    //Awalv Tahap Pengambilan
+    public function deleteMobil(Mobil $id)
+    {
+        Mobil::destroy($id->id);
+
+        return redirect('/admin-list-mobil');
+    }
+
+    //Akhir Kelola Mobil
+
+    //Awal Tahap Pengambilan
 
     public function Pengambilan()
     {
@@ -67,7 +78,7 @@ class DashboardController extends Controller
         }
 
         return view('admin.dashboard.pengambilan', [
-            "bookings" => $bookings->paginate(5)
+            "bookings" => $bookings->paginate(5)           
         ]);
     }
 
@@ -89,7 +100,7 @@ class DashboardController extends Controller
 
         Booking::where('id', $id)->update($updateData);
 
-        return redirect("/admin-pengembalian");
+        return redirect("/admin-pengambilan");
 
     }
 
@@ -139,7 +150,7 @@ class DashboardController extends Controller
 
             $denda = $harga * $days;//Menghitung denda perhari berdasarkan harga sewa unit mobil
 
-            //Akhir Hirung Denda
+            //Akhir Hitung Denda
 
             $updateStruk['tgl_kembali'] = $tgl_kembali;
             $updateStruk['keterlambatan'] = $days;
@@ -156,10 +167,23 @@ class DashboardController extends Controller
 
     //Akhir Tahap Pengembalian
 
+
+    //Kelola konsumen
     public function listKonsumen()
     {
-        return view('admin.dashboard.konsumen');
+        return view('admin.dashboard.konsumen',[
+            'users' => User::all()
+        ]);
     }
+
+    public function deleteKonsumen(User $id)
+    {
+        User::destroy($id->id);
+
+        return redirect('/admin-list-konsumen');
+    }
+
+    //Akhir Kelola konsumen
 
 
     //Proses Booking
@@ -190,9 +214,11 @@ class DashboardController extends Controller
 
     // Akhir proses booking
     
-    public function cetak()
+    public function cetak(Request $request, $id)
     {
-        return view('admin.dashboard.cetak');
+        return view('admin.dashboard.cetak',[
+            "st" => Struk::where('id_booking', $id)->first()
+        ]);
     }
 
 }
